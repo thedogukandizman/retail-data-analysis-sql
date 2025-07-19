@@ -24,7 +24,7 @@ This project demonstrates comprehensive SQL data analysis skills by examining e-
 - **Product Combinations:** Discovered which products are frequently bought together
 - **Inventory Analysis:** Analyzed product varieties and sizes in demand
 
-## 🛠️chnical Skills Demonstrated
+## Technical Skills Demonstrated
 
 ### Advanced SQL Techniques
 - **Complex JOIN Operations:** LEFT OUTER JOIN, INNER JOIN, Self-joins
@@ -84,7 +84,7 @@ FROM Orders
 LEFT JOIN OrderItem ON Orders.OrderID = OrderItem.OrderID;
 ```
 
-##  Suggested Screenshots
+## Screenshots
 
 **Include these 4 key screenshots in your repository:**
 
@@ -93,28 +93,21 @@ LEFT JOIN OrderItem ON Orders.OrderID = OrderItem.OrderID;
 
 
 2. **Customer Analysis Results**
-   - Screenshot of top customers query results showing names, orders, and total amounts
-   - *File: `02_top_customers.png`*
+  <img width="485" height="220" alt="image" src="https://github.com/user-attachments/assets/55acf996-fbdc-4508-9508-4abb26917db9" />
+
 
 3. **Product Performance Dashboard**
-   - Screenshot of best-selling products with quantities and varieties
-   - *File: `03_product_performance.png`*
+<img width="342" height="198" alt="image" src="https://github.com/user-attachments/assets/1160c9a6-45a7-45b9-979b-0e6385a15a65" />
+
 
 4. **Products Bought Together Analysis**
-   - Screenshot showing product pairs and how often they're purchased together
-   - *File: `04_product_combinations.png`*
+<img width="311" height="201" alt="image" src="https://github.com/user-attachments/assets/21227cf6-e4b7-4c0a-b052-db8a7d3211f8" />
+
 
 ##  Technologies Used
 - **Database:** MySQL 8.0
 - **IDE:** MySQL Workbench
 - **Skills:** SQL, Data Analysis, Database Design, Business Intelligence
-
-## Setup Instructions
-1. Clone this repository
-2. Install MySQL and MySQL Workbench
-3. Create database: `CREATE DATABASE hplus_sports;`
-4. Import data: Run `H_Plus_Sports_MySQL.sql` script
-5. Execute analysis queries from chapter folders
 
 ## Database Structure
 - **Customer:** Customer information and demographics
