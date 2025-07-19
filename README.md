@@ -1,12 +1,137 @@
-# Retail Data Analysis with SQL
+# Retail Data Analysis with SQL 
+
 ## Project Overview
-Analyzed e-commerce retail data to uncover customer behavior and sales trends using MySQL.
+This project demonstrates comprehensive SQL data analysis skills by examining e-commerce retail data for H+ Sports. Using MySQL, I performed in-depth analysis of customer behavior, sales trends, and product performance to generate actionable business insights.
 
-## Key Findings
-- Identified top 3 best-selling products
-- Found average daily sales: X items per day
-- Discovered Y% of customers are one-time buyers
+**Dataset:** H+ Sports e-commerce data including customer information, orders, products, and sales transactions.
 
-## Skills Demonstrated
-- Data analysis, JOIN operations, GROUP BY aggregations
-- Customer segmentation, Sales performance analysis
+##  Key Business Questions Answered
+
+### Customer Analysis
+- **Customer Segmentation:** Identified customers by purchase frequency and total spending
+- **One-time vs. Repeat Customers:** Analyzed customer loyalty patterns
+- **Customer Lifetime Value:** Calculated total spending and order frequency per customer
+- **Customer with Zero Orders:** Found customers who registered but never purchased
+
+### Sales Performance
+- **Average Daily Sales:** Calculated daily sales volume and trends
+- **Total Sales Days:** Determined active selling periods
+- **Monthly Sales Patterns:** Analyzed sales by month using date functions
+- **Product Performance:** Identified top-selling products by quantity and revenue
+
+### Product Insights  
+- **Best-Selling Products:** Found top 3 products by total quantity sold
+- **Product Combinations:** Discovered which products are frequently bought together
+- **Inventory Analysis:** Analyzed product varieties and sizes in demand
+
+## 🛠️chnical Skills Demonstrated
+
+### Advanced SQL Techniques
+- **Complex JOIN Operations:** LEFT OUTER JOIN, INNER JOIN, Self-joins
+- **Aggregate Functions:** COUNT, SUM, AVG with GROUP BY
+- **Window Functions:** Date manipulation with MONTH(), MONTHNAME()
+- **Subqueries and CTEs:** Nested queries for complex analysis
+- **Data Filtering:** WHERE vs HAVING clause usage
+- **Data Deduplication:** DISTINCT for accurate counting
+
+### Database Management
+- **Database Setup:** Created and configured MySQL database locally
+- **Data Import:** Imported structured data from SQL files
+- **Table Relationships:** Understanding of foreign key relationships
+- **Query Optimization:** Efficient query writing and performance considerations
+
+
+##  Sample SQL Queries
+
+### Customer Lifetime Value Analysis
+```sql
+SELECT 
+    FirstName,
+    LastName,
+    COUNT(DISTINCT Orders.OrderID) AS TotalOrders,
+    SUM(Quantity) AS TotalQuantity,
+    SUM(TotalDue) AS TotalAmount
+FROM Orders
+LEFT OUTER JOIN OrderItem ON Orders.OrderID = OrderItem.OrderID
+LEFT OUTER JOIN Customer ON Orders.CustomerID = Customer.CustomerID
+GROUP BY Customer.CustomerID
+ORDER BY TotalAmount DESC;
+```
+
+### Products Frequently Bought Together
+```sql
+SELECT 
+    p1.Variety AS Product1,
+    p2.Variety AS Product2,
+    COUNT(*) AS TimesOrderedTogether
+FROM OrderItem oi1
+JOIN OrderItem oi2 ON oi1.OrderID = oi2.OrderID 
+    AND oi1.ProductID < oi2.ProductID
+JOIN Product p1 ON oi1.ProductID = p1.ProductID
+JOIN Product p2 ON oi2.ProductID = p2.ProductID
+GROUP BY p1.ProductID, p2.ProductID
+ORDER BY TimesOrderedTogether DESC
+LIMIT 5;
+```
+
+### Average Daily Sales Calculation
+```sql
+SELECT 
+    SUM(Quantity) AS TotalQuantity,
+    COUNT(DISTINCT DATE(CreationDate)) AS TotalSalesDays,
+    ROUND(SUM(Quantity) / COUNT(DISTINCT DATE(CreationDate)), 2) AS AvgDailySales
+FROM Orders
+LEFT JOIN OrderItem ON Orders.OrderID = OrderItem.OrderID;
+```
+
+##  Suggested Screenshots
+
+**Include these 4 key screenshots in your repository:**
+
+1. **Database Schema Overview** 
+<img width="244" height="148" alt="image" src="https://github.com/user-attachments/assets/73fc4bbc-bc08-4b6b-8e3e-622d07338e0e" />
+
+
+2. **Customer Analysis Results**
+   - Screenshot of top customers query results showing names, orders, and total amounts
+   - *File: `02_top_customers.png`*
+
+3. **Product Performance Dashboard**
+   - Screenshot of best-selling products with quantities and varieties
+   - *File: `03_product_performance.png`*
+
+4. **Products Bought Together Analysis**
+   - Screenshot showing product pairs and how often they're purchased together
+   - *File: `04_product_combinations.png`*
+
+##  Technologies Used
+- **Database:** MySQL 8.0
+- **IDE:** MySQL Workbench
+- **Skills:** SQL, Data Analysis, Database Design, Business Intelligence
+
+## Setup Instructions
+1. Clone this repository
+2. Install MySQL and MySQL Workbench
+3. Create database: `CREATE DATABASE hplus_sports;`
+4. Import data: Run `H_Plus_Sports_MySQL.sql` script
+5. Execute analysis queries from chapter folders
+
+## Database Structure
+- **Customer:** Customer information and demographics
+- **Orders:** Order details with dates and totals  
+- **OrderItem:** Individual items within each order
+- **Product:** Product catalog with varieties and sizes
+- **Salesperson:** Sales team information
+
+## Learning Outcomes
+This project enhanced my ability to:
+- Write complex SQL queries for business analysis
+- Join multiple tables to create comprehensive reports
+- Use aggregate functions and grouping for data summarization
+- Apply date functions for time-based analysis
+- Optimize queries for better performance
+- Translate business questions into SQL solutions
+
+##  Connect With Me
+Feel free to reach out if you'd like to discuss this project or SQL analysis techniques!
+
